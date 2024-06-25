@@ -160,7 +160,7 @@ classdef PokerHand < handle
                 cardSymbols = [sort(obj.Cards.Symbol(pairInd),"descend");obj.Cards.Symbol(~pairInd)];
                 obj.Strength = 250 + max(pairVals) + min(pairVals)/100 + obj.Cards.Value(~pairInd)/10000;
 
-            elseif numel(pairVals) == 1
+            elseif isscalar(pairVals)
                 obj.Type = "Pair";
                 pairInd = obj.Cards.Value == pairVals;
                 cardSymbols = [obj.Cards.Symbol(pairInd);obj.Cards.Symbol(~pairInd)];
