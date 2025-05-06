@@ -19,18 +19,16 @@ tbxOutputFile = pokerHandsToolboxDefinition().OutputFile;
 
 
 % Configure tasks
-
-% plan("check") = CodeIssuesTask();
+plan("check") = CodeIssuesTask();
 
 plan("test") = TestTask(testFiles, ...
     SourceFiles = codeFiles, ...
-    IncludeSubfolders = true);
-% plan("test").Dependencies = "check";
+    IncludeSubfolders = true,...
+    Dependencies = "check");
 
 plan("toolbox").Inputs = [codeFiles,tbxPackagingFiles];
 plan("toolbox").Outputs = tbxOutputFile;
-plan("toolbox").Dependencies = "test";
-% plan("toolbox").Dependencies = ["check","test"];
+plan("toolbox").Dependencies = ["check","test"];
 
 plan("clean") = CleanTask();
 
